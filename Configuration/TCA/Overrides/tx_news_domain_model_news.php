@@ -25,7 +25,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
     0 => [
         'connector' => 'feed',
         'parameters' => [
-            'uri' => 'https://typo3.org/?type=100'
+            'uri' => 'https://rsshub.app/telegram/channel/pfarrei_stjosef_zuerich'
         ],
         'data' => 'xml',
         'nodetype' => 'item',
@@ -36,20 +36,6 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
         'disabledOperations' => 'delete',
         'description' => 'Import of typo3.org news'
     ],
-];
-$GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [
-    0 => [
-        'category' => [
-            'xpath' => './category[text()=\'TYPO3 CMS\']',
-            'transformations' => [
-                10 => [
-                    'isEmpty' => [
-                        'invalidate' => true
-                    ]
-                ]
-            ]
-        ]
-    ]
 ];
 // Add the external information for each column
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = [
@@ -92,14 +78,14 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = 
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = [
     0 => [
-        'field' => 'encoded',
+        'field' => 'description',
         'transformations' => [
             10 => [
                 'userFunction' => [
                     'class' => \Checkitsedo\TelegramRss\Transformation\LinkTransformation::class,
                     'method' => 'absolutizeUrls',
                     'parameters' => [
-                        'host' => 'https://typo3.org'
+                        'host' => 'https://rsshub.app'
                     ]
                 ]
             ],
