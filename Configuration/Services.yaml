@@ -1,0 +1,6 @@
+services:
+  Checkitsedo\TelegramRss\EventListener\InsertRecordPreprocess:
+    tags:
+      - name: event.listener
+        identifier: 'insertRecordPreprocessor'
+        event: Cobweb\ExternalImport\Event\InsertRecordPreprocessEvent
