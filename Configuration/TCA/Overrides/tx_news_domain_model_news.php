@@ -71,7 +71,16 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = 
         'field' => 'description',
         'transformations' => [
             10 => [
-                'trim' => true
+                'userFunction' => [
+                    'class' => \Checkitsedo\TelegramRss\Transformation\LinkTransformation::class,
+                    'method' => 'absolutizeUrls',
+                    'parameters' => [
+                        'host' => 'https://rsshub.app'
+                    ]
+                ]
+            ],
+            20 => [
+                'rteEnabled' => true
             ]
         ]
     ]
